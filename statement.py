@@ -15,4 +15,5 @@ endDateSplit = endDate.split('/')
 startDate = date(int(startDateSplit[2]), int(startDateSplit[1]),
   int(startDateSplit[0]))
 endDate = date(int(endDateSplit[2]), int(endDateSplit[1]), int(endDateSplit[0]))
-print(diff_dates(startDate, endDate) / 7.0)
+weeks = diff_dates(startDate, endDate) / 7.0
+print(f'{weeks:.2f}')
