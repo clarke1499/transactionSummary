@@ -1,3 +1,6 @@
+#!/bin/bash
+if [ "$1" ]
+
 OUTPUT=`statement $1`
 echo "$OUTPUT"
 echo -n "Per Week: £"
