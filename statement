@@ -1,5 +1,6 @@
 #!/bin/bash
 echo -n "Difference: £"
-grep -a Amount $1 | grep -o --regexp=-*[0-9][0-9]*.[0-9]* | paste -s -d+ | bc | grep -o --regexp=-*[0-9][0-9]*.[0-9][0-9]
+grep -a Amount $1 | grep -o --regexp=-*[0-9][0-9]*.[0-9]* | paste -s -d+ | bc |
+  grep -o --regexp=-*[0-9][0-9]*.[0-9][0-9]
 echo -n "Weeks: "
 grep -a -o -e [0-3][0-9]/[0-1][0-9]/20[1-9][0-9] $1 | head -n 2 | statement.py
