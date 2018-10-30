@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -e outfile ] || [ "$1" -nt ~/transactionSummary/outfile ]; then
+if [ ! -e ~/transactionSummary/outfile ] || [ "$1" -nt ~/transactionSummary/outfile ]; then
   OUTPUT=`statement $1`
   echo "$OUTPUT" | tee ~/transactionSummary/outfile
   echo -n "Per Week: £" | tee -a ~/transactionSummary/outfile
