@@ -1,11 +1,16 @@
 #!/bin/bash
-if [ ! -e ~/transactionSummary/outfile ] || [ "$1" -nt ~/transactionSummary/outfile ]; then
+IFSOLD="$IFS"
+IFS=/
+read -r -a array <<< "$1"
+#echo "${array[-1]}"
+IFS=$IFSOLD
+if [ ! -e ~/transactionSummary/outfile_"${array[-1]}" ] || [ "$1" -nt ~/transactionSummary/outfile_"${array[-1]}" ]; then
   OUTPUT=`statement $1`
-  echo "$OUTPUT" | tee ~/transactionSummary/outfile
-  echo -n "Per Week: £" | tee -a ~/transactionSummary/outfile
+  echo "$OUTPUT" | tee ~/transactionSummary/outfile_"${array[-1]}"
+  echo -n "Per Week: £" | tee -a ~/transactionSummary/outfile_"${array[-1]}"
   echo "$OUTPUT" | grep -o --regexp=-*[0-9][0-9]*.[0-9][0-9]* | paste -s -d/ |
     bc -l | grep -o --regexp=-*[0-9][0-9]*.[0-9][0-9] | head -n 1 |
-    tee -a ~/transactionSummary/outfile
+    tee -a ~/transactionSummary/outfile_"${array[-1]}"
 else
-  cat ~/transactionSummary/outfile
+  cat ~/transactionSummary/outfile_"${array[-1]}"
 fi
